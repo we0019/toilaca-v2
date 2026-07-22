@@ -18,5 +18,13 @@ export default [
     },
   },
   { rules: { "no-console": "error" } },
-  { ignores: ["dist/**", ".astro/**", "public/pagefind/**"] },
+  {
+    ignores: [
+      "dist/**",
+      ".astro/**",
+      "public/pagefind/**",
+      "src/content/posts/_color-schemes/**",
+      "src/content/posts/_releases/**",
+    ],
+  },
 ];

@@ -2,13 +2,13 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
-    title: "AstroPaper",
-    description: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    author: "Sat Naing",
-    profile: "https://satna.ing",
+    url: "https://toilaca.com/",
+    title: "toilaca",
+    description: "Một chiếc blog giản đơn về cuộc sống.",
+    author: "Trong Luu",
+    profile: "https://toilaca.com/",
     ogImage: "default-og.jpg",
-    lang: "en",
+    lang: "vi",
     timezone: "Asia/Bangkok",
     dir: "ltr",
   },
@@ -19,20 +19,11 @@ export default defineAstroPaperConfig({
   },
   features: {
     lightAndDarkMode: true,
-    dynamicOgImage: true,
     showArchives: true,
-    showBackButton: true,
-    editPost: {
-      enabled: true,
-      url: "https://github.com/satnaing/astro-paper/edit/main/",
-    },
-    search: "pagefind",
   },
   socials: [
-    { name: "github",   url: "https://github.com/satnaing/astro-paper" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
-    { name: "mail",     url: "mailto:yourmail@gmail.com" },
+    { name: "facebook", url: "https://www.facebook.com/luutrong194/" },
+    { name: "mail",     url: "mailto:sasory.hp19@gmail.com" },
   ],
   shareLinks: [
     { name: "whatsapp", url: "https://wa.me/?text=" },

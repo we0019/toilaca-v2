@@ -1,22 +1,22 @@
 {
-  "name": "astro-paper-v6",
+  "name": "toilaca-v2",
   "type": "module",
   "version": "6.1.0",
+  "packageManager": "npm@11.16.0",
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "astro check && astro build && pagefind --site dist && node -e \"require('fs').cpSync('dist/pagefind','public/pagefind',{recursive:true,force:true})\"",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",
-    "format:check": "prettier --check .",
-    "format": "prettier --write .",
+    "format:check": "prettier --check \"*.{js,json,ts,yaml}\" \"src/*.ts\" \"src/components/**/*.astro\" \"src/layouts/**/*.astro\" \"src/pages/**/*.{astro,ts}\" \"src/styles/**/*.css\" \"src/utils/**/*.{js,ts}\" \"src/scripts/**/*.ts\" \"src/types/**/*.ts\" \"src/content/pages/**/*.md\" \"src/content/posts/*.md\"",
+    "format": "prettier --write \"*.{js,json,ts,yaml}\" \"src/*.ts\" \"src/components/**/*.astro\" \"src/layouts/**/*.astro\" \"src/pages/**/*.{astro,ts}\" \"src/styles/**/*.css\" \"src/utils/**/*.{js,ts}\" \"src/scripts/**/*.ts\" \"src/types/**/*.ts\" \"src/content/pages/**/*.md\" \"src/content/posts/*.md\"",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^7.0.0",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.2",

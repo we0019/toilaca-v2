@@ -11,7 +11,7 @@ interface SiteConfig {
   profile?: string;
   /** Fallback OG image filename in /public, e.g. "og.jpg" */
   ogImage?: string;
-  /** HTML lang attribute, defaults to "en" */
+  /** HTML lang attribute, defaults to "vi" */
   lang?: string;
   /** IANA timezone for post dates, e.g. "Asia/Bangkok" */
   timezone?: string;
@@ -36,29 +36,8 @@ interface PostsConfig {
 interface FeaturesConfig {
   /** Enable light/dark mode toggle. Defaults to true. */
   lightAndDarkMode?: boolean;
-  /**
-   * Generate dynamic OG images per post and provide `/og.png` when the static
-   * `public/{site.ogImage}` file is absent. When false, that file is required
-   * for the default layout OG image (build fails if missing).
-   */
-  dynamicOgImage?: boolean;
   /** Show the /archives page and link it in nav. Defaults to true. */
   showArchives?: boolean;
-  /** Show back button on post detail pages. Defaults to true. */
-  showBackButton?: boolean;
-  /** "Edit page" link shown on post detail pages. */
-  editPost?:
-    | {
-        enabled: true;
-        /** Base URL for the edit link, e.g. GitHub edit URL */
-        url: string;
-      }
-    | { enabled: false };
-  /**
-   * Search provider. "pagefind" ships in the base template.
-   * Set to false to disable search entirely.
-   */
-  search?: "pagefind" | false;
 }
 
 interface SocialLink {

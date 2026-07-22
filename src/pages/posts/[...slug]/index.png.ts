@@ -8,10 +8,6 @@ import { getPostSlug } from "@/utils/getPostPaths";
 import config from "@/config";
 
 export async function getStaticPaths() {
-  if (!config.features.dynamicOgImage) {
-    return [];
-  }
-
   const posts = await getCollection("posts").then(p =>
     p.filter(({ data }) => !data.draft && !data.ogImage)
   );
@@ -23,10 +19,6 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = async ({ props, url }) => {
-  if (!config.features.dynamicOgImage) {
-    return new Response(null, { status: 404, statusText: "Not found" });
-  }
-
   const fonts = fontData["--font-google-sans-code"];
   const regularFontPath = getFontPathByWeight(fonts, 400);
   const boldFontPath = getFontPathByWeight(fonts, 700);

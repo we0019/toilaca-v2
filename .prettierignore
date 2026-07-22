@@ -13,5 +13,6 @@
 !README.md
 !.vscode
 
-# Ignore MDX files
-*.mdx
+# Ignore removed AstroPaper example content
+src/content/posts/_color-schemes/**
+src/content/posts/_releases/**
