@@ -3,6 +3,7 @@ export const ui = {
     home: "Trang chủ",
     posts: "Bài viết",
     tags: "Thẻ",
+    running: "Chạy bộ",
     about: "Giới thiệu",
     archives: "Lưu trữ",
     search: "Tìm kiếm",

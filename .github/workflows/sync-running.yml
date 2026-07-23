@@ -1,0 +1,34 @@
+name: Sync running data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-running:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22.12.0
+
+      - name: Sync Intervals.icu activities
+        run: node scripts/sync-intervals.mjs
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+
+      - name: Commit updated running data
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "chore: sync running data"
+          file_pattern: src/data/running/activities.json

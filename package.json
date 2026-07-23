@@ -11,9 +11,10 @@
     "build": "astro check && astro build && pagefind --site dist && node -e \"require('fs').cpSync('dist/pagefind','public/pagefind',{recursive:true,force:true})\"",
     "preview": "astro preview",
     "sync": "astro sync",
+    "sync:intervals": "node scripts/sync-intervals.mjs",
     "astro": "astro",
-    "format:check": "prettier --check \"*.{js,json,ts,yaml}\" \"src/*.ts\" \"src/components/**/*.astro\" \"src/layouts/**/*.astro\" \"src/pages/**/*.{astro,ts}\" \"src/styles/**/*.css\" \"src/utils/**/*.{js,ts}\" \"src/scripts/**/*.ts\" \"src/types/**/*.ts\" \"src/content/pages/**/*.md\" \"src/content/posts/*.md\"",
-    "format": "prettier --write \"*.{js,json,ts,yaml}\" \"src/*.ts\" \"src/components/**/*.astro\" \"src/layouts/**/*.astro\" \"src/pages/**/*.{astro,ts}\" \"src/styles/**/*.css\" \"src/utils/**/*.{js,ts}\" \"src/scripts/**/*.ts\" \"src/types/**/*.ts\" \"src/content/pages/**/*.md\" \"src/content/posts/*.md\"",
+    "format:check": "prettier --check \"*.{js,json,ts,yaml}\" \".github/workflows/*.yml\" \"scripts/**/*.mjs\" \"src/*.ts\" \"src/components/**/*.astro\" \"src/layouts/**/*.astro\" \"src/pages/**/*.{astro,ts}\" \"src/styles/**/*.css\" \"src/utils/**/*.{js,ts}\" \"src/scripts/**/*.ts\" \"src/types/**/*.ts\" \"src/data/**/*.json\" \"src/content/pages/**/*.md\" \"src/content/posts/*.md\"",
+    "format": "prettier --write \"*.{js,json,ts,yaml}\" \".github/workflows/*.yml\" \"scripts/**/*.mjs\" \"src/*.ts\" \"src/components/**/*.astro\" \"src/layouts/**/*.astro\" \"src/pages/**/*.{astro,ts}\" \"src/styles/**/*.css\" \"src/utils/**/*.{js,ts}\" \"src/scripts/**/*.ts\" \"src/types/**/*.ts\" \"src/data/**/*.json\" \"src/content/pages/**/*.md\" \"src/content/posts/*.md\"",
     "lint": "eslint ."
   },
   "dependencies": {

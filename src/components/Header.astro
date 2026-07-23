@@ -90,6 +90,14 @@ const isActive = (path: string) => {
         </li>
         <li class="col-span-2">
           <a
+            href={getSitePath("running")}
+            class:list={{ "active-nav": isActive("/running") }}
+          >
+            {t.nav.running}
+          </a>
+        </li>
+        <li class="col-span-2">
+          <a
             href={getSitePath("about")}
             class:list={{ "active-nav": isActive("/about") }}
           >

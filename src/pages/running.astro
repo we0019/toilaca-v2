@@ -1,0 +1,210 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import runningData from "@/data/running/activities.json";
+
+type RunningActivity = {
+  id: string;
+  title: string;
+  startDate: string;
+  distanceKm: number | null;
+  durationSeconds: number | null;
+  paceSecondsPerKm: number | null;
+  elevationGainMeters: number | null;
+  averageHeartRate: number | null;
+  trainingLoad: number | null;
+  url: string | null;
+};
+
+const activities = runningData.activities as RunningActivity[];
+const recentActivities = activities.slice(0, 12);
+const totalDistance = activities.reduce(
+  (sum, activity) => sum + (activity.distanceKm ?? 0),
+  0
+);
+const totalDuration = activities.reduce(
+  (sum, activity) => sum + (activity.durationSeconds ?? 0),
+  0
+);
+const averagePace =
+  totalDistance > 0 && totalDuration > 0
+    ? Math.round(totalDuration / totalDistance)
+    : null;
+const latestActivity = activities[0];
+
+const weeklyDistance = getWeeklyDistance(activities).slice(0, 8).reverse();
+const maxWeeklyDistance = Math.max(
+  1,
+  ...weeklyDistance.map(week => week.distanceKm)
+);
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("vi-VN", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(new Date(date));
+
+const formatDuration = (seconds: number | null) => {
+  if (!seconds) return "—";
+
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  return hours > 0 ? `${hours}g ${minutes}p` : `${minutes}p`;
+};
+
+const formatPace = (seconds: number | null) => {
+  if (!seconds) return "—";
+
+  const minutes = Math.floor(seconds / 60);
+  const restSeconds = String(seconds % 60).padStart(2, "0");
+
+  return `${minutes}:${restSeconds}/km`;
+};
+
+function getWeeklyDistance(source: RunningActivity[]) {
+  const weeks = new Map<string, { label: string; distanceKm: number }>();
+
+  source.forEach(activity => {
+    const date = new Date(activity.startDate);
+    if (Number.isNaN(date.getTime())) return;
+
+    const monday = new Date(date);
+    const day = (monday.getDay() + 6) % 7;
+    monday.setDate(monday.getDate() - day);
+    monday.setHours(0, 0, 0, 0);
+
+    const key = monday.toISOString().slice(0, 10);
+    const week = weeks.get(key) ?? {
+      label: `${monday.getDate()}/${monday.getMonth() + 1}`,
+      distanceKm: 0,
+    };
+
+    week.distanceKm += activity.distanceKm ?? 0;
+    weeks.set(key, week);
+  });
+
+  return [...weeks.entries()]
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([, week]) => ({
+      ...week,
+      distanceKm: Math.round(week.distanceKm * 10) / 10,
+    }));
+}
+---
+
+<Layout title="Chạy bộ" description="Nhật ký chạy bộ tự đồng bộ từ Garmin.">
+  <Header />
+  <main id="main-content" class="app-layout py-10">
+    <section class="border-border border-b pb-8">
+      <p class="text-muted text-sm font-medium tracking-wide uppercase">
+        Garmin → Intervals.icu → Tôi la cà
+      </p>
+      <h1 class="mt-3 text-3xl font-semibold sm:text-4xl">Chạy bộ</h1>
+      <p class="text-muted mt-4 max-w-2xl">
+        Những buổi chạy được đồng bộ tự động từ đồng hồ Garmin qua
+        Intervals.icu.
+      </p>
+    </section>
+
+    <section
+      class="border-border grid gap-4 border-b py-8 sm:grid-cols-2 lg:grid-cols-4"
+      aria-label="Thống kê chạy bộ"
+    >
+      <div>
+        <p class="text-muted text-sm">Tổng quãng đường</p>
+        <p class="mt-1 text-2xl font-semibold">{totalDistance.toFixed(1)} km</p>
+      </div>
+      <div>
+        <p class="text-muted text-sm">Số buổi chạy</p>
+        <p class="mt-1 text-2xl font-semibold">{activities.length}</p>
+      </div>
+      <div>
+        <p class="text-muted text-sm">Pace trung bình</p>
+        <p class="mt-1 text-2xl font-semibold">{formatPace(averagePace)}</p>
+      </div>
+      <div>
+        <p class="text-muted text-sm">Buổi mới nhất</p>
+        <p class="mt-1 text-2xl font-semibold">
+          {latestActivity ? formatDate(latestActivity.startDate) : "—"}
+        </p>
+      </div>
+    </section>
+
+    {
+      weeklyDistance.length > 0 && (
+        <section class="border-border border-b py-8">
+          <h2 class="text-xl font-semibold">Km theo tuần</h2>
+          <div class="mt-6 grid h-48 grid-cols-8 items-end gap-3">
+            {weeklyDistance.map(week => (
+              <div class="flex h-full flex-col justify-end gap-2">
+                <div
+                  class="bg-accent min-h-2 w-full"
+                  style={`height: ${(week.distanceKm / maxWeeklyDistance) * 100}%`}
+                  title={`${week.distanceKm} km`}
+                />
+                <p class="text-muted text-center text-xs">{week.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="py-8">
+      <h2 class="text-xl font-semibold">Hoạt động gần đây</h2>
+      {
+        recentActivities.length > 0 ? (
+          <ul class="divide-border mt-4 divide-y">
+            {recentActivities.map(activity => (
+              <li class="py-4">
+                <a
+                  href={activity.url ?? "#"}
+                  class="hover:text-accent block"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="font-medium">{activity.title}</span>
+                </a>
+                <dl class="text-muted mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-sm sm:grid-cols-5">
+                  <div>
+                    <dt class="sr-only">Ngày</dt>
+                    <dd>{formatDate(activity.startDate)}</dd>
+                  </div>
+                  <div>
+                    <dt class="sr-only">Quãng đường</dt>
+                    <dd>{activity.distanceKm?.toFixed(2) ?? "—"} km</dd>
+                  </div>
+                  <div>
+                    <dt class="sr-only">Thời gian</dt>
+                    <dd>{formatDuration(activity.durationSeconds)}</dd>
+                  </div>
+                  <div>
+                    <dt class="sr-only">Pace</dt>
+                    <dd>{formatPace(activity.paceSecondsPerKm)}</dd>
+                  </div>
+                  <div>
+                    <dt class="sr-only">Nhịp tim trung bình</dt>
+                    <dd>
+                      {activity.averageHeartRate
+                        ? `${Math.round(activity.averageHeartRate)} bpm`
+                        : "—"}
+                    </dd>
+                  </div>
+                </dl>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-muted mt-4">
+            Chưa có dữ liệu chạy bộ. Sau khi kết nối Intervals.icu và chạy
+            workflow, dữ liệu sẽ xuất hiện ở đây.
+          </p>
+        )
+      }
+    </section>
+  </main>
+  <Footer />
+</Layout>
