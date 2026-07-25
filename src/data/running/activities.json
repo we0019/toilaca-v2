@@ -1,7 +1,21 @@
 {
-  "lastSyncedAt": "2026-07-25T08:26:07.193Z",
+  "lastSyncedAt": "2026-07-25T14:04:19.010Z",
   "source": "intervals.icu",
   "activities": [
+    {
+      "id": "i169091663",
+      "title": "Quận Hải An - Bài tập rèn luyện",
+      "type": "run",
+      "startDate": "2026-07-25T19:15:18",
+      "distanceKm": 3.56,
+      "durationSeconds": 1747,
+      "paceSecondsPerKm": 490,
+      "elevationGainMeters": 8.559526,
+      "averageHeartRate": 152,
+      "trainingLoad": 31,
+      "source": "GARMIN_CONNECT",
+      "url": "https://intervals.icu/activities/i169091663"
+    },
     {
       "id": "i167113238",
       "title": "Quận Hải An - Chạy",
