@@ -6,6 +6,7 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconX from "@/assets/icons/IconX.svg";
+import IconRun from "@/assets/icons/IconRun.svg";
 import LinkButton from "./LinkButton.astro";
 import { getSitePath, stripBase } from "@/utils/withBase";
 import { ui } from "@/ui";
@@ -90,19 +91,32 @@ const isActive = (path: string) => {
         </li>
         <li class="col-span-2">
           <a
-            href={getSitePath("running")}
-            class:list={{ "active-nav": isActive("/running") }}
-          >
-            {t.nav.running}
-          </a>
-        </li>
-        <li class="col-span-2">
-          <a
             href={getSitePath("about")}
             class:list={{ "active-nav": isActive("/about") }}
           >
             {t.nav.about}
           </a>
+        </li>
+        <li class="col-span-1 flex items-center justify-center">
+          <LinkButton
+            href={getSitePath("running")}
+            class:list={["focus-outline relative size-8"]}
+            title={t.nav.running}
+            aria-label={t.nav.running}
+          >
+            <IconRun
+              class="absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2"
+            />
+            <span class="sr-only">{t.nav.running}</span>
+            {
+              isActive("/running") && (
+                <IconUnderline
+                  aria-hidden="true"
+                  class="absolute bottom-0 w-6 scale-125 max-sm:inset-s-2"
+                />
+              )
+            }
+          </LinkButton>
         </li>
         {
           features.showArchives && (
