@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-07-27T19:57:20.596Z",
+  "lastSyncedAt": "2026-07-28T03:39:46.203Z",
   "source": "intervals.icu",
   "activities": [
     {
@@ -351,20 +351,6 @@
       "trainingLoad": 11,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i153623630"
-    },
-    {
-      "id": "i153623634",
-      "title": "Night Run",
-      "type": "run",
-      "startDate": "2025-07-22T21:48:32",
-      "distanceKm": 2.85,
-      "durationSeconds": 1379,
-      "paceSecondsPerKm": 484,
-      "elevationGainMeters": 0,
-      "averageHeartRate": 154,
-      "trainingLoad": 25,
-      "source": "GARMIN_CONNECT",
-      "url": "https://intervals.icu/activities/i153623634"
     }
   ]
 }
