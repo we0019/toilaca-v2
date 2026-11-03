@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-11-02T16:16:37.589Z",
+  "lastSyncedAt": "2026-11-03T01:01:57.289Z",
   "source": "intervals.icu",
   "activities": [
     {
@@ -281,20 +281,6 @@
       "trainingLoad": 73,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i104292558"
-    },
-    {
-      "id": "i104132172",
-      "title": "Evening Run",
-      "type": "run",
-      "startDate": "2025-10-28T18:08:36",
-      "distanceKm": 3.78,
-      "durationSeconds": 1859,
-      "paceSecondsPerKm": 491,
-      "elevationGainMeters": 26,
-      "averageHeartRate": 155,
-      "trainingLoad": 35,
-      "source": "GARMIN_CONNECT",
-      "url": "https://intervals.icu/activities/i104132172"
     }
   ]
 }
