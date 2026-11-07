@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-11-06T19:28:08.217Z",
+  "lastSyncedAt": "2026-11-07T06:05:21.947Z",
   "source": "intervals.icu",
   "activities": [
     {
@@ -253,20 +253,6 @@
       "trainingLoad": 25,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i112056100"
-    },
-    {
-      "id": "i104749076",
-      "title": "Afternoon Run",
-      "type": "run",
-      "startDate": "2025-11-01T17:35:01",
-      "distanceKm": 4.4,
-      "durationSeconds": 2160,
-      "paceSecondsPerKm": 490,
-      "elevationGainMeters": 30,
-      "averageHeartRate": 158,
-      "trainingLoad": 43,
-      "source": "GARMIN_CONNECT",
-      "url": "https://intervals.icu/activities/i104749076"
     }
   ]
 }
