@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-11-16T06:38:33.760Z",
+  "lastSyncedAt": "2026-11-16T22:11:47.480Z",
   "source": "intervals.icu",
   "activities": [
     {
@@ -40,7 +40,7 @@
       "paceSecondsPerKm": 536,
       "elevationGainMeters": 6.0105057,
       "averageHeartRate": 136,
-      "trainingLoad": 21,
+      "trainingLoad": 26,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i167113238"
     },
@@ -124,7 +124,7 @@
       "paceSecondsPerKm": 536,
       "elevationGainMeters": 8.533453,
       "averageHeartRate": 134,
-      "trainingLoad": 23,
+      "trainingLoad": 24,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i162864587"
     },
@@ -180,7 +180,7 @@
       "paceSecondsPerKm": 564,
       "elevationGainMeters": 2.421366,
       "averageHeartRate": 120,
-      "trainingLoad": 9,
+      "trainingLoad": 10,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i158035081"
     },
@@ -236,7 +236,7 @@
       "paceSecondsPerKm": 507,
       "elevationGainMeters": 8,
       "averageHeartRate": 150,
-      "trainingLoad": 22,
+      "trainingLoad": 16,
       "source": "GARMIN_CONNECT",
       "url": "https://intervals.icu/activities/i125813996"
     },
